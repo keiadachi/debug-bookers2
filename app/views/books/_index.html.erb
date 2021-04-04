@@ -16,6 +16,10 @@
         </td>
         <td><%= link_to book.title, book_path(book), class: "book_#{book.id}" %></td>
         <td><%= book.body %></td>
+        <td><p>コメント件数：<%= book.book_comments.count %></p>
+          <% book.book_comments.each do |book_comment| %>
+          <% end %>
+        </td>
         <td><% if book.favorited_by?(current_user) %>
         <p>
           <%= link_to book_favorites_path(book), method: :delete do %>

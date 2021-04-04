@@ -7,12 +7,14 @@ before_action :ensure_correct_user, only:[:edit]
     @book_new = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
+    @favorite = Favorite.new
   end
 
   def index
     @book = Book.new
     @books = Book.all
     @user = current_user
+    @favorite = Favorite.new
   end
 
   def create

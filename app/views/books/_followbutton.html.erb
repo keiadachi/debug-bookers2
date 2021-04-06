@@ -1,8 +1,8 @@
 <% if user_signed_in? %>
     <p>
       <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
+        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :post, class: "btn btn-success" %>
       <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
+        <%= link_to 'フォローする', follow_path(user.id), method: :post, class: "btn btn-success" %>
       <% end %>
 <% end %>

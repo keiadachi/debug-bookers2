@@ -1,12 +1,22 @@
 class BookCommentsController < ApplicationController
  
   def create
-    book = Book.find(params[:book_id])
-    comment = current_user.book_comments.new(book_comment_params)
-    comment.book_id = book.id
-    comment.save
-    redirect_to book_path(book)  
+    @book = Book.find(params[:book_id])
+    #comment = current_user.book_comments.new(book_comment_params)
+    #comment.book_id = book.id
+    #comment.save
+    #redirect_to book_path(book)  
+    @comment = current_user.book_comment.build(book_comment_params)
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @book }
+        format.js { render :index }
+      else
+        format.html { redirect_to @book }
+      end
+    end
   end
+  
 
   def destroy
     BookComment.find_by(id: params[:id], book_id: params[:book_id]).destroy

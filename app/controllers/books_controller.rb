@@ -9,6 +9,7 @@ before_action :ensure_correct_user, only:[:edit]
     @user = @book.user
     @favorite = Favorite.new
     @book_comment = BookComment.new
+    @book_commnets = @book.book_comments
   end
 
   def index
